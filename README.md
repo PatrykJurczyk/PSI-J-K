@@ -1,1 +1,1 @@
-# PSI-J-K
+# Model bazy danych
