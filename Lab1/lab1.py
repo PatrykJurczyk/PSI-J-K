@@ -2,8 +2,8 @@
 x = "Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker"
 print("-----------------")
 # zad2
-imie = "Michał"
-nazw = "Kosiński"
+imie = "Patryk"
+nazw = "Jurczyk"
 litera_1 = imie[1]
 litera_2 = nazw[2]
 d = len(x)
@@ -59,7 +59,7 @@ print(copy_x)
 print("-----------------")
 
 # zad8
-krotkowa_lista = ("Andrzej Iksiński", 123456, "Paweł Kowalski", 456789, "Michał Kosiński", 158926)
+krotkowa_lista = ("Andrzej Iksiński", 123456, "Paweł Kowalski", 456789, "Eryk Krygier", 158326)
 print(krotkowa_lista)
 print("-----------------")
 
@@ -75,7 +75,7 @@ slownik = {
     "adres P": "Marcepanowa 27",
     "email P": "kochamkoty@gmail.com",
     "rok urodzenia P": "1999",
-    "Michał Kosiński": "158926",
+    "Eryk Krygier": "158326",
     "wiek M": "21",
     "adres M": "Arkadia 27",
     "rok urodzenia M": "2000",
