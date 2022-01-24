@@ -11,12 +11,17 @@ class Gra(models.Model):
     opis = models.TextField()
     rok_wydania = models.DateField()
     cena = models.DecimalField(max_digits=4, decimal_places=2)
-    AGE = ()
+    AGE = (
+        (PEGI3, 'Pegi-3'),
+        (PEGI7, 'Pegi-7'),
+        (PEGI12, 'Pegi-12'),
+        (PEGI16, 'Pegi-16'),
+        (PEGI18, 'Pegi-18')
+    )
     ograniczenia_wiekowe = models.CharField(choices=AGE)
     last_update = models.DateTimeField(auto_now_add=True)
     jezyk_id = models.ForeignKey(Jezyk, on_delete=models.CASCADE)
-    # Tu nie widać co tam jest
-    jeszczejednomabyc = models.CharField()
+    ocena = models.BooleanField(default=True)
 
 class Gatunek(models.Model):
     nazwa = models.CharField(max_length=25, blank=False)
@@ -38,7 +43,7 @@ class GraText(models.Model):
 
 class Biblioteka(models.Model):
     gra_id = models.ForeignKey(Gra, on_delete=models.CASCADE)
-    status_instalacji = models.BooleanField()
+    status_instalacji = models.BooleanField(default=False)
     wartosc = models.DecimalField(max_digits=6, decimal_places=2)
 
 class Adres(models.Model):
@@ -50,8 +55,8 @@ class Uzytkownik(models.Model):
     last_name = models.CharField(max_length=45, blank=False)
     email = models.CharField(max_length=50, blank=False)
     adres_id = models.ForeignKey(Adres, on_delete=models.CASCADE)
-    aktywny = models.BooleanField()
-    data_utworzenia_konta = models.DateField
+    aktywny = models.BooleanField(default=False)
+    data_utworzenia_konta = models.DateField()
     last_update = models.DateTimeField(auto_now_add=True)
     biblioteka_id = models.ForeignKey(Biblioteka, on_delete=models.CASCADE)
 
@@ -59,7 +64,7 @@ class Zakup(models.Model):
     data_zakupu = models.DateField()
     sklep_gier_id = models.ForeignKey(SklepGier, on_delete=models.CASCADE)
     uzytkownik_id = models.ForeignKey(Uzytkownik, on_delete=models.CASCADE)
-    return_date = models.DateField() # o chuj tu chodzi
+    return_date = models.DateField()
     last_update = models.DateTimeField(auto_now_add=True)
 
 class Platnosc(models.Model):
