@@ -77,7 +77,10 @@ WSGI_APPLICATION = 'PSIGameLibrary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'games_store',
+        'USER': 'root',
+        'PASSWORD' : '',
+        'PORT' : '3306',
     }
 }
 

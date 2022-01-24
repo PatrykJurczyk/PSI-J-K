@@ -11,6 +11,11 @@ class Gra(models.Model):
     opis = models.TextField()
     rok_wydania = models.DateField()
     cena = models.DecimalField(max_digits=4, decimal_places=2)
+    PEGI3 = 'Pegi-3'
+    PEGI7 = 'Pegi-7'
+    PEGI12 = 'Pegi-12'
+    PEGI16 = 'Pegi-16'
+    PEGI18 = 'Pegi-18'
     AGE = (
         (PEGI3, 'Pegi-3'),
         (PEGI7, 'Pegi-7'),
@@ -18,7 +23,7 @@ class Gra(models.Model):
         (PEGI16, 'Pegi-16'),
         (PEGI18, 'Pegi-18')
     )
-    ograniczenia_wiekowe = models.CharField(choices=AGE)
+    ograniczenia_wiekowe = models.CharField(max_length=200, choices=AGE)
     last_update = models.DateTimeField(auto_now_add=True)
     jezyk_id = models.ForeignKey(Jezyk, on_delete=models.CASCADE)
     ocena = models.BooleanField(default=True)
