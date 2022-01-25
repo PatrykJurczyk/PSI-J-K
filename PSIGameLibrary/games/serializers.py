@@ -13,10 +13,10 @@ class UzytkownikSerializer(serializers.Serializer):
         return Uzytkownik.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.imie = validated_data.get('imie', instance.name)
-        instance.nazwisko = validated_data.get('nazwisko', instance.name)
-        instance.email = validated_data.get('email', instance.name)
-        instance.aktywny = validated_data.get('aktywny', instance.name)
+        instance.imie = validated_data.get('imie', instance.imie)
+        instance.nazwisko = validated_data.get('nazwisko', instance.nazwisko)
+        instance.email = validated_data.get('email', instance.email)
+        instance.aktywny = validated_data.get('aktywny', instance.aktywny)
         instance.save()
         return instance
 
@@ -35,10 +35,10 @@ class ProducentSerializer(serializers.Serializer):
         return Producent.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.nazwa = validated_data.get('nazwa', instance.name)
-        instance.rok_zalozenia = validated_data.get('rok_zalozenia', instance.name)
-        instance.siedziba = validated_data.get('siedziba', instance.name)
-        instance.ilosc_czlonkow = validated_data.get('ilosc_czlonkow', instance.name)
+        instance.nazwa = validated_data.get('nazwa', instance.nazwa)
+        instance.rok_zalozenia = validated_data.get('rok_zalozenia', instance.rok_zalozenia)
+        instance.siedziba = validated_data.get('siedziba', instance.siedziba)
+        instance.ilosc_czlonkow = validated_data.get('ilosc_czlonkow', instance.ilosc_czlonkow)
         instance.save()
         return instance
 
@@ -51,7 +51,7 @@ class GatunekSerializer(serializers.Serializer):
         return Gatunek.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.nazwa = validated_data.get('nazwa', instance.name)
+        instance.nazwa = validated_data.get('nazwa', instance.nazwa)
         instance.save()
         return instance
 
@@ -62,16 +62,20 @@ class GraSerializer(serializers.Serializer):
     pegi = serializers.CharField(required=True, max_length=20)
     ocena = serializers.CharField(required=True, max_length=20)
     rok_produkcji = serializers.DateField()
+    idUzytkownika = serializers.CharField(required=True, max_length=40)
+    idGatunku = serializers.CharField(required=True, max_length=40)
+    idProducenta = serializers.CharField(required=True, max_length=40)
 
     def create(self, validated_data):
-        return Gatunek.objects.create(**validated_data)
+        return Gra.objects.create(**validated_data)
 
 
     def update(self, instance, validated_data):
-        instance.tytul = validated_data.get('tytul', instance.name)
-        instance.opis = validated_data.get('opis', instance.name)
-        instance.pegi = validated_data.get('pegi', instance.name)
-        instance.ocena = validated_data.get('ocena', instance.name)
-        instance.rok_produkcji = validated_data.get('rok_produkcji', instance.name)
+        instance.tytul = validated_data.get('tytul', instance.tytul)
+        instance.opis = validated_data.get('opis', instance.opis)
+        instance.pegi = validated_data.get('pegi', instance.pegi)
+        instance.ocena = validated_data.get('ocena', instance.ocena)
+        instance.rok_produkcji = validated_data.get('rok_produkcji', instance.rok_produkcji)
+        instance.idUzytkownika = validated_data.get('idUzytkownika', instance.Uzytkownik)
         instance.save()
         return instance
