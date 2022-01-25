@@ -5,7 +5,7 @@ from datetime import date
 class UzytkownikSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     imie = serializers.CharField(required=True, max_length = 45)
-    Nazwisko = serializers.CharField(required=True, max_length=45)
+    nazwisko = serializers.CharField(required=True, max_length=45)
     email = serializers.CharField(required=True, max_length=50)
     aktywny = serializers.BooleanField(required=True)
 
