@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
-from .models import Gra, Gatunek, Uzytkownik, Producent
+from .models import Gra, Gatunek, Uzytkownik, Producent, Order, CartItem
 from .serializers import GraSerializer, GatunekSerializer, UzytkownikSerializer, ProducentSerializer
 from django.views.generic import TemplateView, CreateView, UpdateView, FormView, ListView, DeleteView
 from rest_framework import status
@@ -196,3 +196,24 @@ def cart_clear(request):
     cart.clear()
     return redirect("cart_detail")
 
+class SuccessOrder(TemplateView):
+    template_name = 'success_order.html'
+
+class PaymentPage(CreateView):
+    model = Order
+    template_name = 'payment.html'
+    fields = ['name', 'address']
+    success_url = reverse_lazy('success_order')
+
+    def create_cart_items(self, order):
+        cart = Cart(self.request)
+        for key, value in cart.__dict__['cart'].items():
+            CartItem.objects.create(order=order, product_id=value['product_id'], quantity=value['quantity'])
+        cart.clear()
+
+    def form_valid(self, form):
+        order = form.save()
+        order.address_client = self.request.user
+        order.save()
+        self.create_cart_items(order)
+        return super().form_valid(form)

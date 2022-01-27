@@ -59,7 +59,9 @@
       <p><h2 class="text-center">Koszyk jest pusty. Zapraszamy do<a href="{% url 'producer_list' %}"> zakupów!</a></h2></p>
   {% endif %}
   </div>
-
+  {% if request.session.cart %}
+<a class="btn btn-success" href="{% url 'payment_page' %}" style="float: right">Przejdź do podsumowania</a>
+  {% endif %}
 {% endblock %}
 {% block extra_js %}
   <script type="text/javascript">

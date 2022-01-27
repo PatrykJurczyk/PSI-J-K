@@ -30,13 +30,21 @@ class GatunekAdmin(admin.ModelAdmin):
 @register(Gra)
 class GraAdmin(admin.ModelAdmin):
     list_display = [
-        'tytul',
+        'name',
         'opis',
         'pegi',
         'ocena',
         'rok_produkcji',
         'idGatunku',
         'idProducenta',
-        'cena',
+        'price',
         'image',
+    ]
+
+@register(CartItem)
+class CartItem(admin.ModelAdmin):
+    list_display = [
+        'order',
+        'product',
+        'quantity',
     ]
