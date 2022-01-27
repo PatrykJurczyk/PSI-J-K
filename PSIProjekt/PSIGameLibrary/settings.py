@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'games',
+    'cart',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,7 +69,7 @@ TEMPLATES = [
         },
     },
 ]
-
+CART_SESSION_ID = 'cart'
 WSGI_APPLICATION = 'PSIGameLibrary.wsgi.application'
 
 

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load edittags %}
+{% block content %}
+  <div class="card border-0 shadow" style="background-color:#E2E2E2;padding-bottom: 15px;">
+    {% if request.session.cart %}
+  <h2 class="text-center">Koszyk</h2>
+      <a style="position:absolute;top:5px;right:20px;" class="btn btn-danger mt-2" href="{% url 'cart_clear' %}">Wyczyść koszyk</a>
+{% for key,value in request.session.cart.items %}
+  <hr/>
+  <div class="row" style="padding-top:10px;">
+  <div class="col-xl-2">
+    {% if value.image %}
+  <img src="{{value.image}}" height="100px" width="100px"/>
+    {% endif %}
+  </div>
+  <div class="col-xl-2">
+  <h5>{{value.tytul}}</h5>
+  </div>
+  <div class="col-xl-2">
+  <h5>Ilość</h5>
+    {{value.quantity}}
+  </div>
+  <div class="col-xl-2">
+  <h5>Koszt</h5>
+    {% multiply value.quantity value.price %} zł
+  </div>
+  <div class="col-xl-2" style="padding-top: 15px">
+  <a href="{% url 'item_increment' key %}">
+<span class="material-icons" style="margin-left: 10px" >
+  add
+</span>
+    </a>
+    {% if value.quantity > 1 %}
+    <a href="{% url 'item_decrement' key %}">
+      {% else %}
+      <a href="{% url 'item_clear' key %}">
+        {% endif %}
+<span class="material-icons" style="margin-left: 10px" >
+  remove
+</span>
+    </a>
+  </div>
+  <div class="col-xl-2" style="padding-top: 15px">
+  <a href="{% url 'item_clear' key %}">
+<span class="material-icons" style="margin-left: 10px" >
+  deletes
+</span>
+    </a>
+  </div>
+</div>
+
+    {% endfor %}
+      <hr/>
+
+  <h4 class="text-right">Całkowita wartość: {% checksum request.session.cart.items %} zł</h4>
+
+
+  {% else %}
+      <p><h2 class="text-center">Koszyk jest pusty. Zapraszamy do<a href="{% url 'producer_list' %}"> zakupów!</a></h2></p>
+  {% endif %}
+  </div>
+
+{% endblock %}
+{% block extra_js %}
+  <script type="text/javascript">
+  function Suma(dict){
+      for (const [key, value] of Object.entries(dict)) {
+          console.log(key, value);
+      }
+  }
+  $('document').ready(Suma({{ request.session.cart.items }}));
+  </script>
+{% endblock %}

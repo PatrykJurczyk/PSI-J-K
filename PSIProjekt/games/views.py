@@ -11,6 +11,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .forms import CreateUserForm
 from django.urls import reverse_lazy
 from PSIGameLibrary.settings import LOGIN_REDIRECT_URL
+from cart.cart import Cart
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, JsonResponse
 
 
 class LandingPage(TemplateView):
@@ -150,3 +153,46 @@ class ProducerList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@login_required()
+def cart_add(request, id):
+    if request.method == "POST":
+        cart = Cart(request)
+        product = Gra.objects.get(id=id)
+        cart.add(product=product)
+        return JsonResponse({'status': 'Dodano do koszyka'})
+    return JsonResponse({'status': 'error'})
+
+@login_required()
+def item_clear(request, id):
+    cart = Cart(request)
+    product = Gra.objects.get(id=id)
+    cart.remove(product)
+    return redirect("cart_detail")
+
+@login_required()
+def item_increment(request, id):
+    cart = Cart(request)
+    product = Gra.objects.get(id=id)
+    cart.add(product=product)
+    return redirect("cart_detail")
+
+@login_required()
+def item_decrement(request, id):
+    cart = Cart(request)
+    product = Gra.objects.get(id=id)
+    cart.decrement(product=product)
+    return redirect("cart_detail")
+
+
+@login_required()
+def cart_detail(request):
+    return render(request, 'cart.html')
+
+
+@login_required()
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect("cart_detail")
+

@@ -9,6 +9,12 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a href="{% url 'cart_detail' %}" class="nav-link fw-6"
+                           style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
+                           aria-expanded="false">Koszyk</a>
+                    </li>
+                    a
+                    <li class="nav-item">
                         <a href="{% url 'logout' %}" class="nav-link fw-6"
                            style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
                            aria-expanded="false">Wyloguj</a>
