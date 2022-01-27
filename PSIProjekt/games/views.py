@@ -2,8 +2,77 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from .models import Gra, Gatunek, Uzytkownik, Producent
 from .serializers import GraSerializer, GatunekSerializer, UzytkownikSerializer, ProducentSerializer
+from django.views.generic import TemplateView, CreateView, UpdateView, FormView, ListView, DeleteView
 from rest_framework import status
 from rest_framework.views import APIView
+from django.shortcuts import render, redirect, resolve_url
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
+from .forms import CreateUserForm
+from django.urls import reverse_lazy
+from PSIGameLibrary.settings import LOGIN_REDIRECT_URL
+
+
+class LandingPage(TemplateView):
+    template_name = 'landing_page.html'
+
+class LogoutView(LogoutView):
+    template_name = 'logout.html'
+
+class LoginView(LoginView):
+    template_name = 'login.html'
+    def get_default_redirect_url(self):
+        return resolve_url(self.next_page or LOGIN_REDIRECT_URL)
+
+def registerPage(request):
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.save()
+            return redirect('login')
+    context = {'form': form}
+    return render(request, 'register.html', context)
+
+class ProfilePage(LoginRequiredMixin, TemplateView):
+    template_name = 'profile.html'
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = Uzytkownik
+    fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'address',
+        'phone_number',
+    ]
+    template_name = 'profile_update.html'
+    success_url = reverse_lazy('profile_update')
+
+    def get_object(self):
+        return self.request.user
+
+
+class ProducerListView(ListView):
+    paginate_by = 5
+    model = Producent
+    template_name = 'producers_list.html'
+    queryset = Producent.objects.all()
+
+class GamesListView(ListView):
+    paginate_by = 5
+    template_name = 'gameslist.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['producent'] = Producent.objects.get(id=self.kwargs['id'])
+        return context
+
+    def get_queryset(self):
+        id = self.kwargs['id']
+        return Producent.objects.get(id=id).gra_set.all()
+
 
 class GameList(APIView):
     def get(self, request, format=None):

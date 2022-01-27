@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card border-0 shadow" style="background-color:#E2E2E2;">
+    <h2 class="text-center">Producent {{ producent.name }}</h2>
+{% for gra in object_list %}
+  <div class="row" style="padding-top:10px;">
+  <div class="col-xl-3">
+    {% if gra.image %}
+  <img src="{{gra.image.url}}" height="100px" width="100px"/>
+    {% endif %}
+  </div>
+  <div class="col-xl-3">
+  <h4>{{gra.tytul}}</h4>
+  {{gra.cena}} zł
+      Pegi: {{gra.pegi}}
+    {{gra.opis}}
+  </div>
+</div>
+    {% endfor %}
+  <div class="row">
+  <div class="col-xl-4 offset-xl-5">
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+  </div>
+<a href="/" style = "text-align: center">Strona główna</a>
+  </div>
+  <div id="snackbar">
+  </div>
+{% endblock %}
+{% block extra_js %}
+  <script type="text/javascript">
+  function SendForm(event, element) {
+          event.preventDefault()
+          const ids = element.id
+          $.ajax({
+              method: "POST",
+              url: '/cart/add/'+ids+'/',
+              data: $('#add_form').serialize(),
+              success: function (response) {
+                  console.log(response);
+                  $('#snackbar').html(response.status);
+                  $('#snackbar').addClass("show");
+                  setTimeout(function () {
+                      $('#snackbar').removeClass("show");
+                  }, 3000);
+              },
+          })
+      }
+  </script>
+{% endblock %}
