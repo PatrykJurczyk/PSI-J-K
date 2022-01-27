@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="592c1376-fdb5-4947-a7b1-c04ea0cf0ad6" name="Changes" comment=".">
+    <list default="true" id="592c1376-fdb5-4947-a7b1-c04ea0cf0ad6" name="Changes" comment="Dodano utworzenia zamowien">
+      <change beforePath="$PROJECT_DIR$/.idea/PSI-J-K.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PSI-J-K.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -47,7 +56,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/PSIProjekt" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -64,8 +74,41 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642969803618</updated>
+      <workItem from="1643304530943" duration="452000" />
     </task>
+    <task id="LOCAL-00001" summary="Changes">
+      <created>1643294916309</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1643294916309</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changes">
+      <created>1643299342519</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1643299342519</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Dodano utworzenia zamowien">
+      <created>1643302614058</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1643302614058</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Dodano utworzenia zamowien">
+      <created>1643302656255</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1643302656255</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -80,7 +123,8 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Changes" />
+    <MESSAGE value="Dodano utworzenia zamowien" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodano utworzenia zamowien" />
   </component>
 </project>
