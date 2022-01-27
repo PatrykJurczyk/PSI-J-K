@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+  <div id="form_div" class="col-lg-6 offset-xl-3 card border-0 shadow" style="background-color:#E2E2E2;">
+{% include 'profile_update.html' %}
+  </div>
+  </div>
+  <div id="snackbar">
+  Zaktualizowano profil
+  </div>
+{% endblock %}
+{% block extra_js %}
+  <script type="text/javascript">
+  $('document').ready(
+      $.ajax({
+          method: "GET",
+          url: '{% url 'profile_update' %}',
+          success: function (response) {
+              $('#form_div').html(response);
+          },
+          error: function (response) {
+              console.log(response)
+          }
+      })
+  );
+  function PostWizard(event) {
+          event.preventDefault()
+          $.ajax({
+              method: "POST",
+              url: '{% url 'profile_update' %}',
+              data: $('#profile_form').serialize(),
+              success: function (response) {
+                  $('#form_div').html(response);
+                  console.log(response);
+                  if(!response.includes('errorlist')) {
+                      $('#snackbar').addClass("show");
+                      setTimeout(function () {
+                          $('#snackbar').removeClass("show");
+                      }, 3000);
+                  }
+              },
+              error: function (response) {
+                  console.log(response)
+              }
+          })
+      }
+  </script>
+{% endblock %}

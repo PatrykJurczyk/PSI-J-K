@@ -1,0 +1,4 @@
+django==4.0.1
+pillow==8.4.0
+django-shopping-cart
+djangorestframework

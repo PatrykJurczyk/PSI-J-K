@@ -1,0 +1,44 @@
+{% load static %}
+<header class="header dark-topbar header-sticky" style="position:sticky;top:-0.5px;z-index: 999;height:auto;">
+    <nav class="navbar navbar-expand-lg" style="min-height: 70px;">
+        <div class="container navbar-container">
+            <a href="{% url 'producer_list' %}">
+                <img src="{% static 'images/Console-PNG-Image.png'%}" alt="logo" width="100px" height="100px"/>
+            </a>
+            <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbar_main">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'profile' %}" class="nav-link fw-6"
+                           style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
+                           aria-expanded="false">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'cart_detail' %}" class="nav-link fw-6"
+                           style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
+                           aria-expanded="false">Koszyk</a>
+                    </li>
+                    a
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}" class="nav-link fw-6"
+                           style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
+                           aria-expanded="false">Wyloguj</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}" class="nav-link fw-6"
+                           style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
+                           aria-expanded="false">Zaloguj</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'register' %}" class="nav-link fw-6"
+                           style="padding-left:10px;padding-right:10px;font-size: 21px;" href="#" aria-haspopup="true"
+                           aria-expanded="false">Rejestracja</a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

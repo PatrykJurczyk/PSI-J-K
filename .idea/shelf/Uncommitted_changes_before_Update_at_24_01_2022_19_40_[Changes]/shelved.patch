@@ -1,0 +1,21 @@
+Index: PSIGameLibrary/games/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.db import models\r\n\r\n# Create your models here.\r\n\r\nclass Jezyk(models.Model):\r\n    nazwa = models.CharField(max_length=20, blank=False)\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n\r\nclass Gra(models.Model):\r\n    tytul = models.CharField(max_length=255, blank=False)\r\n    opis = models.TextField()\r\n    rok_wydania = models.DateField()\r\n    cena = models.DecimalField(max_digits=4, decimal_places=2)\r\n    AGE = ()\r\n    ograniczenia_wiekowe = models.CharField(choices=AGE)\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n    jezyk_id = models.ForeignKey(Jezyk, on_delete=models.CASCADE)\r\n    # Tu nie widać co tam jest\r\n    jeszczejednomabyc = models.CharField()\r\n\r\nclass Gatunek(models.Model):\r\n    nazwa = models.CharField(max_length=25, blank=False)\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n\r\nclass GatunekGry(models.Model):\r\n    gra_id = models.ForeignKey(Gra, on_delete=models.CASCADE)\r\n    gatunek_id = models.ForeignKey(Gatunek, on_delete=models.CASCADE)\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n\r\nclass SklepGier(models.Model):\r\n    gra_id = models.ForeignKey(Gra, on_delete=models.CASCADE)\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n\r\nclass GraText(models.Model):\r\n    gra_id = models.ForeignKey(Gra, on_delete=models.CASCADE)\r\n    tytul = models.CharField(max_length=255, blank=False)\r\n    opis = models.TextField()\r\n\r\nclass Biblioteka(models.Model):\r\n    gra_id = models.ForeignKey(Gra, on_delete=models.CASCADE)\r\n    status_instalacji = models.BooleanField()\r\n    wartosc = models.DecimalField(max_digits=6, decimal_places=2)\r\n\r\nclass Adres(models.Model):\r\n    panstwo = models.CharField(max_length=50, blank=False)\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n\r\nclass Uzytkownik(models.Model):\r\n    imie = models.CharField(max_length=45, blank=False)\r\n    last_name = models.CharField(max_length=45, blank=False)\r\n    email = models.CharField(max_length=50, blank=False)\r\n    adres_id = models.ForeignKey(Adres, on_delete=models.CASCADE)\r\n    aktywny = models.BooleanField()\r\n    data_utworzenia_konta = models.DateField\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n    biblioteka_id = models.ForeignKey(Biblioteka, on_delete=models.CASCADE)\r\n\r\nclass Zakup(models.Model):\r\n    data_zakupu = models.DateField()\r\n    sklep_gier_id = models.ForeignKey(SklepGier, on_delete=models.CASCADE)\r\n    uzytkownik_id = models.ForeignKey(Uzytkownik, on_delete=models.CASCADE)\r\n    return_date = models.DateField() # o chuj tu chodzi\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n\r\nclass Platnosc(models.Model):\r\n    uzytkownik_id = models.ForeignKey(Uzytkownik, on_delete=models.CASCADE)\r\n    cena = models.DecimalField(max_digits=5, decimal_places=2)\r\n    data_platnosci = models.DateField()\r\n    last_update = models.DateTimeField(auto_now_add=True)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/PSIGameLibrary/games/models.py b/PSIGameLibrary/games/models.py
+--- a/PSIGameLibrary/games/models.py	(revision 459b15c800eb69bc9d2dd08b61cacc37a219f6c5)
++++ b/PSIGameLibrary/games/models.py	(date 1643049570256)
+@@ -11,7 +11,9 @@
+     opis = models.TextField()
+     rok_wydania = models.DateField()
+     cena = models.DecimalField(max_digits=4, decimal_places=2)
+-    AGE = ()
++    AGE = (
++        ""
++    )
+     ograniczenia_wiekowe = models.CharField(choices=AGE)
+     last_update = models.DateTimeField(auto_now_add=True)
+     jezyk_id = models.ForeignKey(Jezyk, on_delete=models.CASCADE)
