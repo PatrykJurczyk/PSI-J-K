@@ -1,5 +1,5 @@
 """
-WSGI config for PSIGameLibrary project.
+WSGI config for PSIProjekt project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

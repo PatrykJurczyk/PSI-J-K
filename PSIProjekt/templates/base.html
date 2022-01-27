@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Games Store</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+</head>
+<body style="height:100%;background-color:#C8C8C8">
+{% block header %}
+  {% include 'header.html' %}
+{% endblock %}
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+{% block footer %}
+{% endblock %}
+<script src="{% static 'js/jquery-3.5.1.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+{% block extra_js %}
+{% endblock %}
+</body>
+</html>

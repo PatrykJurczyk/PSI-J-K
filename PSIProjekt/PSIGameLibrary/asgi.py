@@ -1,5 +1,5 @@
 """
-ASGI config for PSIGameLibrary project.
+ASGI config for PSIProjekt project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
