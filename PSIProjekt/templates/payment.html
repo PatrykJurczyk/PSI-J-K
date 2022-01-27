@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load edittags %}
+{% block content%}
+
+<div class="card border-0 shadow col-xl-8 offset-xl-3"
+     style="background-color:#E2E2E2; padding-top: 30px; margin: 30px; margin-left: -30%">
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Imię i Nazwisko:</label><br>
+        <input class="form-control" type="text" id="name" name="name" value="{{user.first_name}} {{user.last_name}}"
+               style="width: 75%"><br>
+        <label for="address">Adres</label><br>
+        <input class="form-control" type="text" id="address" name="address" value="{{user.address}}"
+               style="width: 75%"><br>
+        <p>Wybierz metodę płatności:</p>
+        <table style="margin-left: none; margin-right: 50px;">
+            <tr>
+        <td><input type="image" alt="submit" src="{% static 'images/paypal.png'%}" style=" width: 100px; height: 100px; margin-left: 150px"></td>
+        <td><input type="image" alt="submit" src="{% static 'images/blik.png'%}" style=" width: 150px; height: 100px; margin-left: 150px"></td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+<div class="card border-0 shadow col-xl-10 offset-xl-3" style="background-color:#E2E2E2;padding-bottom: 15px; margin-left: 40%; margin-top: -44.1%">
+    {% if request.session.cart %}
+    <h2 class="text-center">Koszyk</h2>
+    {% for key,value in request.session.cart.items %}
+    <hr/>
+    <div class="row" style="padding-top:10px;">
+        <div class="col-xl-2">
+            {% if value.image %}
+            <img src="{{value.image}}" height="100px" width="100px"/>
+            {% endif %}
+        </div>
+        <div class="col-xl-2">
+            <h5>{{value.name}}</h5>
+        </div>
+        <div class="col-xl-2">
+            <h5>Ilość</h5>
+            {{value.quantity}}
+        </div>
+        <div>
+            <h5>Koszt</h5>
+            {% multiply value.quantity value.price %} zł
+        </div>
+
+    </div>
+
+
+    {% endfor %}
+
+    <hr/>
+
+
+    <h4 class="text-right">Całkowita wartość: {% checksum request.session.cart.items %} zł</h4>
+
+    {% else %}
+    <p>
+    <h2 class="text-center">Koszyk jest pusty. Zapraszamy do<a href="{% url 'restaurant_list' %}"> zakupów!</a></h2></p>
+    {% endif %}
+
+</div>
+<div>
+</div>
+{% endblock %}

@@ -27,6 +27,8 @@ urlpatterns = [
        views.item_decrement, name='item_decrement'),
     path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
     path('koszyk/', views.cart_detail, name='cart_detail'),
+    path('platnosc/', PaymentPage.as_view(), name='payment_page'),
+    path('sukces/', SuccessOrder.as_view(), name='success_order'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = format_suffix_patterns(urlpatterns)
